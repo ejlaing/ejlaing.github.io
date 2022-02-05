@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>My Website</title>
 
-<script>
-function takeOver() {
-document.getElementById("header1").innerHTML = "Hello JavaScript!";
-}
-</script>
-
-<style>
-	body {
-	text-align: center;
-	background: white;
-	}
-	p {
-	margin: 50px 50px;
-	}
-</style>
+	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-	<h1 id="header1">Hello World!</h1>
+	<!-- Page Header -->
+	<div class="pageHeader">
+		<h1 style="margin-top: 20px;">My Website</h1>
+		<p style="margin-bottom: 10px;">My <b>really</b> cool website.</p>
+	</div>
 
-	<p>Bloople</p>
+	<!-- Side Panel -->
+	<div class="sidePanel">
+		<h1>About Us</h1>
+		<p class="sidePanel">We're pretty cool</p>
+		<img src="/images/dog.jpg" class="sidePanel" alt="Dog" title="Daisy">
+	</div>
 
-	<button type="button" onclick="takeOver()">JavaScriptify!</button>
 </body>
 </html>

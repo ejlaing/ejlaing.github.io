@@ -1,44 +1,49 @@
 body {
-    background-color: powderblue;
+	margin: 0;
+	font-family: Tahoma, Verdana, sans-serif;
 }
 
 h1 {
-    background-color: rgb(11, 89, 179);
-    color: rgb(255, 255, 255);
-    font-size: 200%;
-    padding: 10px 10px;
-    text-align: center;
-    display: block;
+	border: 5px solid rgb(218, 247, 220);
+	padding: 10px;
+	margin: 0;
 }
 
 p {
-    color: rgb(255, 255, 255);
-    font-size: 200%;
+	border: 2px dashed red;
+	font-size: 115%;
+	color: red;
 }
 
-a {
-    background-color: white;
-    color:rgb(11, 89, 179);
+.pageHeader {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-    font-size: 200%;
-    padding: 10px 10px;
-    display: inline-block;
-    text-decoration: none;
+	border: 5px solid rgb(12, 27, 51);
+	border-style: hidden hidden solid hidden;
+	margin: 0;
 
-a:hover {
-    background-color: rgb(240, 240, 240);
-    font-size: 200%;
-    
+	height: 110%;
+	
+	background-color: rgb(8, 126, 139);
+
+	color: rgb(218, 247, 220);
+	text-align: center;
+	vertical-align: baseline;
 }
 
-table, td, th {
-    text-align: left;
-    border: 1px solid black;
-    border-collapse: collapse;
+.sidePanel {
+	display: flex;
+	flex-direction:column;
+
+	margin: 0;
+
+	width: 30%;
+
+	background-color: rgb(218, 247, 220);
 }
 
-iframe {
-	height: 500px;
-	width: 500px;
-	border: none;
+p.sidePanel, img.sidePanel {
+	padding: 0px 0px 10px 20px;
 }
