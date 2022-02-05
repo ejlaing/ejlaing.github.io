@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script>
+function takeOver() {
+document.getElementById("header1").innerHTML = "Hello JavaScript!";
+}
+</script>
+
 <style>
 	body {
 	text-align: center;
@@ -13,10 +20,10 @@
 </head>
 
 <body>
-	<script>
-	document.getElementById("header1").innerHTML = "Hello JavaScript!";
-	</script>
-
 	<h1 id="header1">Hello World!</h1>
+
+	<p>Bloople</p>
+
+	<button type="button" onclick="takeOver()">JavaScriptify!</button>
 </body>
 </html>
