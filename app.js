@@ -2,17 +2,19 @@ const attractionList = document.querySelector("#attractions-list");
 
 // Get data and turn it into HTML elements
 function renderAttractions(doc) {
-    let list = document.createElement("li");
+    let li = document.createElement("li");
     let name = document.createElement("span");
     let rating = document.createElement("span");
+    let location = document.createElement("span");
 
-    list.setAttribute("doc-id", doc.id);
+    li.setAttribute("doc-id", doc.id);
     name.textContent = doc.data().name;
     rating.textContent = doc.data().rating;
+    location.textContent = "Your mom's house";
 
-    list.appendChild(name);
-    list.appendChild(rating);
-    attractionList.appendChild(list);
+    li.appendChild(name);
+    li.appendChild(rating);
+    attractionList.appendChild(li);
 }
 
 
