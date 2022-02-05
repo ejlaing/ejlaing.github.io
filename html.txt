@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Eli's Webpage</title>
+    </head>
+    <body>
+        <!-- Comments! -->
+        <h2>Hi Alexa!</h2>
+        <pre>
+This is preformatted in Visual Studio Code!
+That's why it's a different font.
+Woohoo!
+Yay!</pre>
+        <p><sub>This</sub> <i>text</i> <sup>is</sup> <b>not</b> <mark>preformatted</mark>. It's <del>not</del> <ins>exactly</ins> what I want it to be!</p>
+        <p>Here is a fun quote from Wikipedia:</p>
+        <blockquote cite="https://en.wikipedia.org/wiki/Dog">The dog has been selectively bred over millennia for various behaviors, sensory capabilities, and physical attributes. 
+            Dog breeds vary widely in shape, size, and color. 
+            They perform many roles for humans, such as hunting, herding, pulling loads, protection, assisting police and the military, companionship, therapy, and aiding disabled people. 
+            This influence on human society has given them the sobriquet of "man's best friend."
+        </blockquote>
+        <p><bdo dir="rtl">"gfedcba, look it's the right way!</bdo></p>
+        <hr>
+        <p style="color:white; background-color:firebrick; text-align:center;" title="Ha! You looked.">LOOK AT THIS!</p>
+        <p style="color:rgb(71, 155, 3);" title="See? It's green!">
+            This one's green!
+        </p>
+        <a href="https://g.co/kgs/YqnPDn">Snake Game!</a>
+        <br>
+        <img src="dog.jpg" alt="Image not found" width="300" height="300" title="DAISY!">
+    </body>
+</html>
