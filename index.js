@@ -22,15 +22,15 @@ const attractions = collection(db, "attractions");
 
 const attractionsList = document.getElementById("attractions-list");
 function writeData(doc) {
-  let list = document.createElement("li");
+  let li = document.createElement("li");
   let name = document.createElement("span");
 
-  list.setAttribute("doc-id", doc.id);
-  list.textContent = "Attractions: ";
+  li.setAttribute("doc-id", doc.id);
+  li.textContent = "Attractions: ";
   name.textContent = doc.data().name;
 
-  list.appendChild(name);
-  attractionsList.appendChild(list);
+  li.appendChild(name);
+  attractionsList.appendChild(li);
 }
 
 // get docs
