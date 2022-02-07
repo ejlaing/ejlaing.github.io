@@ -26,6 +26,7 @@ function writeData(doc) {
   let name = document.createElement("span");
 
   list.setAttribute("doc-id", doc.id);
+  list.textContent = "Attractions: ";
   name.textContent = doc.data().name;
 
   list.appendChild(name);
