@@ -1,6 +1,6 @@
 // import functions from https://www.gstatic.com/firebasejs/9.6.6/
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
-import { getFirestore, collection, getDocs, query, limit,
+import { getFirestore, collection, getDocs, query, limit, getDocs
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
 
 // initialize and configure Firebase
@@ -32,4 +32,9 @@ function writeData() {
   attractionsList.appendChild(list);
 }
 
-getDocs(db, "attractions").forEach((doc) => {writeData(doc);})
+const q = query(collection(db, "cities"));
+
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  writeData(doc);
+});
