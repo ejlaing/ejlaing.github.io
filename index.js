@@ -33,6 +33,5 @@ function writeData() {
 }
 
 attractions.getDocs().forEach((doc) => {
-    writeData(doc);
-  })
+  writeData(doc);
 })
