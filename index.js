@@ -28,7 +28,7 @@ async function documentsQuery() {
 
     const querySnapshot = await getDocs(attractionsQuery);
     const allDocs = querySnapshot.forEach((snapshot) => {
-        console.log(snapshot.data());
+        document.getElementbyId("this-one").innerHTML = snapshot.data();
     })
 }
 
