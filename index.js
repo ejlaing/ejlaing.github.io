@@ -1,6 +1,8 @@
 // import functions from https://www.gstatic.com/firebasejs/9.6.6/
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
-import { getFirestore, collection, getDocs, query, limit
+import { 
+  getFirestore, collection, getDocs,
+  doc, setDoc,
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
 
 // initialize and configure Firebase
@@ -19,7 +21,7 @@ const db = getFirestore(firebaseApp);
 // reference attractions collection
 const attractions = collection(db, "attractions");
 
-
+// Write data to list
 const attractionsList = document.getElementById("attractions-list");
 function writeData(doc) {
   let li = document.createElement("li");
@@ -33,9 +35,23 @@ function writeData(doc) {
   attractionsList.appendChild(li);
 }
 
-// get docs
+// Get data from firebase
 const q = query(collection(db, "attractions"));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   writeData(doc);
 });
+
+// Add a new document in collection "attractions"
+function setNewDocument(newAttraction) {
+  const docRef = await addDoc(collection(db, "attractions"), {
+    name: 	newAttraction.name,
+    location: 	newAttraction.location,
+    zip: 	newAttraction.zip,
+    rating: 	newAttraction.rating,
+    isRestaurant: newAttraction.isRestaurant,
+    hours: 	newAttraction.hours,
+    description: newAttraction.description,
+  });
+  console.log("Document written with ID: " + docRef.id + " and\n name: " + docRef.doc.data);
+}
