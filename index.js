@@ -20,7 +20,7 @@ const db = getFirestore(firebaseApp);
 const attractions = collection(db, "attractions");
 
 
-const attractionsList = document.querySelector("attractions-list");
+const attractionsList = document.getElementById("attractions-list");
 function writeData(doc) {
   let list = document.createElement("li");
   let name = document.createElement("span");
