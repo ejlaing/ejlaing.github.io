@@ -17,7 +17,6 @@ const firebaseApp = initializeApp({
 const db = getFirestore(firebaseApp);
 
 const attractionsList = document.querySelector("attractions-list")
-
 function writeData(doc) {
   let list = document.createElement("li");
   let name = document.createElement("span");
@@ -30,7 +29,7 @@ function writeData(doc) {
   attractionsList.appendChild(list);
 }
 
-db.collection("attractions").get().then((snapshot) => {
+db.collection(db, "attractions").get().then((snapshot) => {
   snapshot.docs.forEach((doc) => {
     writeData(doc);
   })
