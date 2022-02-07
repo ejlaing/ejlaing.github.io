@@ -16,20 +16,22 @@ const firebaseApp = initializeApp({
 // initialize database
 const db = getFirestore(firebaseApp);
 
-const attractions = collection(db, 'attractions');
+const attractionsList = document.querySelector("attractions-list")
 
-// query function to retrieve data
-async function documentsQuery() {
-    const attractionsQuery = query(
-        // Specify more for query
-        collection(db, 'attractions'),
-        limit(20),
-    );
+function writeData(doc) {
+  let list = document.createElement("li");
+  let name = document.createElement("span");
 
-    const querySnapshot = await getDocs(attractionsQuery);
-    const allDocs = querySnapshot.forEach((snapshot) => {
-        document.getElementbyId("this-one").innerHTML = snapshot.data();
-    })
+  list.setAttribute("data-id", doc.id);
+  name.textContent = doc.data().name;
+
+  list.appendChild(name);
+
+  attractionsList.appendChild(list);
 }
 
-documentsQuery();
+db.collection("attractions").get().then((snapshot) => {
+  snapshot.docs.forEach((doc) => {
+    writeData(doc);
+  })
+})
