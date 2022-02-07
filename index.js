@@ -32,7 +32,7 @@ function writeData() {
   attractionsList.appendChild(list);
 }
 
-getDocs(attractions).then((snapshot) => {
+attractions.getDocs().then((snapshot) => {
   snapshot.docs().forEach((doc) => {
     writeData(doc);
   })
