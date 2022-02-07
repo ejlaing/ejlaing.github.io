@@ -33,7 +33,7 @@ function writeData() {
 }
 
 // get docs
-const q = query(collection(db, "cities"));
+const q = query(collection(db, "attractions"));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   writeData(doc);
