@@ -32,8 +32,7 @@ function writeData() {
   attractionsList.appendChild(list);
 }
 
-attractions.getDocs().then((snapshot) => {
-  snapshot.docs().forEach((doc) => {
+attractions.getDocs().forEach((doc) => {
     writeData(doc);
   })
 })
