@@ -21,7 +21,7 @@ const attractions = collection(db, "attractions");
 
 
 const attractionsList = document.querySelector("attractions-list");
-function writeData() {
+function writeData(doc) {
   let list = document.createElement("li");
   let name = document.createElement("span");
 
