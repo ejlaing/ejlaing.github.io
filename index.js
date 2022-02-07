@@ -1,6 +1,6 @@
 // import functions from https://www.gstatic.com/firebasejs/9.6.6/
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
-import { getFirestore, collection, getDocs, query, limit, getDocs
+import { getFirestore, collection, getDocs, query, limit
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
 
 // initialize and configure Firebase
