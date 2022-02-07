@@ -32,6 +32,4 @@ function writeData() {
   attractionsList.appendChild(list);
 }
 
-attractions.getDocs().forEach((doc) => {
-  writeData(doc);
-})
+attractions.getDocs().forEach((doc) => {writeData(doc);})
