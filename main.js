@@ -29,7 +29,7 @@ function writeData(doc) {
   attractionsList.appendChild(list);
 }
 
-db.collection(db, "attractions").get().then((snapshot) => {
+collection(db, "attractions").get().then((snapshot) => {
   snapshot.docs.forEach((doc) => {
     writeData(doc);
   })
