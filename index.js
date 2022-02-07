@@ -32,8 +32,8 @@ function writeData() {
   attractionsList.appendChild(list);
 }
 
+// get docs
 const q = query(collection(db, "cities"));
-
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   writeData(doc);
