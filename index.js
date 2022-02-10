@@ -58,8 +58,11 @@ async function blahaba(newAttraction) {
   //console.log("Document written with ID: " + docRef.id + " and\n name: " + docRef.doc.data());
 }
 
+// Get data from form, and fill a new object with it
+var form = document.forms[0];
+console.log(form.getElementsByTagName("name"));
+
 // Get data from form and add a document with it
-var form = document.getElementById("add-doc-form");
 const attraction = {
   name: "Andy's house",
   location: "Fontana-On-Geneva-Lake",
