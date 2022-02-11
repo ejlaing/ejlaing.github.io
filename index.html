@@ -6,24 +6,32 @@
 </head>
 
 <body>
-  <h1>Testing...</h1>
+  <h1>Testing</h1>
 
-  <ul id="attractions-list">List:</ul>
+  <dl id="attractions-list">List:</dl>
 
-<form id="add-doc-form" action="index.js" autocomplete="off">
-  <label for="name">Name:</label><br>
+<form id="add-doc-form" autocomplete="off">
+  <label for="name">Name:</label>
   <input type="text" id="name" name="name"><br>
-  <label for="location">Location:</label><br>
+
+  <label for="location">Location:</label>
   <input type="text" id="location" name="location"><br>
-  <label for="typeoA">Type of Attraction:</label><br>
+
+  <label for="openTime">Open Time:</label>
+  <input type="text" id="openTime" name="openTime"><br>
+  <label for="closeTime">Close Time:</label>
+  <input type="text" id="closeTime" name="closeTime"><br>
+
+  <label for="typeoA">Type o A:</label>
   <input type="text" id="typeoA" name="typeoA"><br>
-  <label for="rating">Rating:</label><br>
+
+  <label for="rating">Rating:</label>
   <input type="text" id="rating" name="rating"><br>
+
   <label for="descr">Description:</label><br>
-  <textarea id="descr" name="descr"></textarea><br>
+  <textarea id="descr" name="descr" rows="3" cols="35"></textarea><br>
 
-  <input type="submit">
-
+  <button id="submit-btn">Submit!</button>
 </form>
 
 </body>

@@ -1,9 +1,6 @@
 // Import functions from https://www.gstatic.com/firebasejs/9.6.6/
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
-import { 
-  getFirestore, collection, getDocs,
-  doc, setDoc, query, addDoc,
-} from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
+import { getFirestore, collection, getDocs, query, addDoc } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
 
 // Initialize and configure Firebase
 const firebaseApp = initializeApp({
@@ -21,55 +18,59 @@ const db = getFirestore(firebaseApp);
 // Reference attractions collection
 const attractions = collection(db, "attractions");
 
-// Write data to list
+/* ---DISPLAY DATA ON WEBSITE--- */
+// Create elements with gotten data
 const attractionsList = document.getElementById("attractions-list");
 function writeData(doc) {
-  let li = document.createElement("li");
-  let name = document.createElement("span");
+  let dt = document.createElement("dt");
+  let name = document.createElement("dd");
+  let typeOfAttraction = document.createElement("dd");
+  let location = document.createElement("dd");
+  let hours = document.createElement("dd");
+  let rating = document.createElement("dd");
 
-  li.setAttribute("doc-id", doc.id);
-  li.textContent = "Attractions: ";
-  name.textContent = doc.data().name;
+  dt.setAttribute("id", doc.id);
+  dt.innerHTML = doc.data().name;
+  typeOfAttraction.innerHTML = doc.data().typeOfAttraction;
+  location.innerHTML = doc.data().location;
+  hours.innerHTML = doc.data().openTime + " - " + doc.data().closeTime;
+  rating.innerHTML = doc.data().rating + "/5.0";
 
-  li.appendChild(name);
-  attractionsList.appendChild(li);
+  dt.appendChild(name);
+  dt.appendChild(typeOfAttraction);
+  dt.appendChild(location);
+  dt.appendChild(hours);
+  dt.appendChild(rating);
+  attractionsList.appendChild(dt);
 }
 
 // Get data from firebase
-const q = query(collection(db, "attractions"));
+const q = query(attractions);
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   writeData(doc);
-  
 });
 
-// Add a new document in collection "attractions"
-async function blahaba(newAttraction) {
-  console.log("coolio\n");
-  const docRef = await addDoc(collection(db, "attractions"), {
-    name: 	newAttraction.name,
-    location: 	newAttraction.location,
-    zip: 	newAttraction.zip,
-    rating: 	newAttraction.rating,
-    isRestaurant: newAttraction.isRestaurant,
-    hours: 	newAttraction.hours,
-    description: newAttraction.description,
-  });
-  //console.log("Document written with ID: " + docRef.id + " and\n name: " + docRef.doc.data());
+/* ---SUBMIT DATA TO DATABASE ---*/
+// Get data from form
+document.getElementById("submit-btn").onclick = getFormData;
+
+function getFormData() {
+  const form = document.forms[0];
+  const attraction = {
+    name:             form["name"].value,
+    location:         form["location"].value,
+    openTime:         form["openTime"].value,
+    closeTime:        form["closeTime"].value,
+    typeOfAttraction: form["typeoA"].value,
+    rating:           form["rating"].value,
+    description:      form["descr"].value,
+  }
+  setData(attraction);
+  console.log(attraction)
 }
 
-// Get data from form, and fill a new object with it
-var form = document.forms[0];
-console.log(form.getElementsByTagName("name"));
-
-// Get data from form and add a document with it
-const attraction = {
-  name: "Andy's house",
-  location: "Fontana-On-Geneva-Lake",
-  zip: 53125,
-  rating: 5.0,
-  isRestaurant: false,
-  hours: {openTime: "12:00am", closeTime: "12:00pm"},
-  description: "Just a lovely home, innit!"
+// Add a new document in collection "attractions", with data
+async function setData(newAttraction) {
+  const docRef = await addDoc(collection(db, "attractions"), newAttraction);
 }
-//blahaba(attraction);
