@@ -44,8 +44,9 @@ function writeData(doc) {
   dt.appendChild(hours);
   dt.appendChild(rating);
   attractionsList.appendChild(dt);
-    
-  document.getElementById("number-oA").textContent = numberoA;
+  
+  // Print number of attractions next to "List: "
+  document.getElementById("number-oA").textContent = 1 + numberoA;
 }
 
 // Get data from firebase
