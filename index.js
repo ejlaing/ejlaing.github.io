@@ -2,6 +2,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
 import { getFirestore, collection, getDocs, query, addDoc } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
 
+let numberoA = 0;
+
 // Initialize and configure Firebase
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyBlItp1Kq3TZp1aije7m9HxPzQG12zI7mU",
@@ -42,6 +44,8 @@ function writeData(doc) {
   dt.appendChild(hours);
   dt.appendChild(rating);
   attractionsList.appendChild(dt);
+    
+  document.getElementById("number-oA").textContent = numberoA;
 }
 
 // Get data from firebase
@@ -49,6 +53,7 @@ const q = query(attractions);
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   writeData(doc);
+  numberoA++;
 });
 
 /* ---SUBMIT DATA TO DATABASE ---*/
