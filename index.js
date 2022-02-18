@@ -72,10 +72,18 @@ attractionsArray.forEach((thisAttraction) => {
 });
 
 // Search for data
-const searchInput = document.querySelector("#search");
+const searchInput = document.querySelector("#search-spec");
 searchInput.addEventListener("input", (e) => {
   const searchValue = e.target.value.toLowerCase();
-  console.log(searchValue);
+  attractionsList.childNodes.forEach((attractionCard) => {
+    const visible = attractionCard.textContent.toLowerCase().includes(searchValue);
+    attractionCard.classList.toggle("hide", !visible);
+  })
+});
+
+const locationInput = document.querySelector("#location-spec");
+locationInput.addEventListener("input", (e) => {
+  const searchValue = e.target.value.toLowerCase();
   attractionsList.childNodes.forEach((attractionCard) => {
     const visible = attractionCard.textContent.toLowerCase().includes(searchValue);
     attractionCard.classList.toggle("hide", !visible);
