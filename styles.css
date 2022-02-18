@@ -1,10 +1,70 @@
 body {
-  margin: 5px;
+  margin: 0px;
 
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: Trebuchet MS, sans-serif;
+  font-size: 110%;
+  color: #FFF;
 }
 
 h1 {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+
+  color: #BF360C;
+}
+
+.header {
+  background-color: #BF360C;
   margin: 0px;
-  padding: 0px;
+  height: 5em;
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+}
+
+.aside {
+  flex: 1;
+  min-width: 100px;
+  
+  padding: 0.5em;
+
+  color: #BF360C;
+  background-color: #FBE9E7;
+}
+
+.attractions-list {
+  flex: 6;
+
+  margin: 0;
+  padding: 0.5em
+}
+
+.attractions-item {
+  background-color: #FF9E80;
+  border-radius: 0.5em;
+
+  margin: 0.5em 0;
+  padding: 0.5em;
+}
+
+.attractions-item dt {
+  margin: 0.2em;
+  text-decoration: underline;
+  color: #BF360C;
+}
+
+.hide {
+  display: none;
 }
