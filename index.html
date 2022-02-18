@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="module" src="index.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <script type="module" src="index.js" defer></script>
+  <title>My Project</title>
 </head>
 
 <body>
-  <h1>Testing</h1>
+  <div class="header">
+    <h1>My Project</h1>
+  </div>
 
-  <dl id="attractions-list">List: <span id="number-oA"></span></dl>
+  <div class="nav-bar">
+    <ul class="nav-list">
+      <li>Spot 1</li>
+      <li>Spot 2</li>
+    </ul>
+  </div>
 
-<form id="add-doc-form" autocomplete="off">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name"><br>
+  <div class="main-container">
+    <div class="aside">
+      <h2>Aside</h2>
 
-  <label for="location">Location:</label>
-  <input type="text" id="location" name="location"><br>
+      <form class="aside-specs">
+        <div class="type-list"></div>
 
-  <label for="openTime">Open Time:</label>
-  <input type="text" id="openTime" name="openTime"><br>
-  <label for="closeTime">Close Time:</label>
-  <input type="text" id="closeTime" name="closeTime"><br>
+        <input type="submit" id="aside-submit">
+      </form>
+    </div>
+ 
+    <dl class="attractions-list">
+      <h2>Attractions:</h2>
+      
+    </dl>
+  </div>
 
-  <label for="typeoA">Type o A:</label>
-  <input type="text" id="typeoA" name="typeoA"><br>
+  <form method="post" autocomplete="off">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="location">Location:</label><br>
+    <input type="text" id="location" name="location"><br>
+    <label for="typeoA">Type of Attraction:</label><br>
+    <input type="text" id="typeoA" name="typeoA"><br>
+    <label for="rating">Rating:</label><br>
+    <input type="text" id="rating" name="rating"><br>
+    <label for="descr">Description:</label><br>
+    <textarea id="descr" name="descr"></textarea><br>
 
-  <label for="rating">Rating:</label>
-  <input type="text" id="rating" name="rating"><br>
+    <input type="button" value="Submit!" id="submit-btn">
+  </form>
 
-  <label for="descr">Description:</label><br>
-  <textarea id="descr" name="descr" rows="3" cols="35"></textarea><br>
-
-  <button id="submit-btn">Submit!</button>
-</form>
-
+  <template class="attraction-item-template">
+    <div class="attractions-item">
+      <dt class="attraction-name"></dt>
+      <dd class="attraction-type"></dd>
+      <dd class="attraction-loc"></dd> 
+      <dd class="attraction-hours"></dd>
+      <dd class="attraction-rating"></dd>
+    </div>
+  </template>
 </body>
 </html>
