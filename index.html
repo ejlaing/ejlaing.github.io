@@ -11,28 +11,20 @@
     <h1>My Project</h1>
   </div>
 
-  <div class="nav-bar">
-    <ul class="nav-list">
-      <li>Spot 1</li>
-      <li>Spot 2</li>
-    </ul>
-  </div>
-
   <div class="main-container">
     <div class="aside">
       <h2>Aside</h2>
 
       <form class="aside-specs">
-        <div class="type-list"></div>
-
-        <input type="submit" id="aside-submit">
+        <label for="search">Search Attractions:</label>
+        <input type="search" id="search">
       </form>
     </div>
  
-    <dl class="attractions-list">
+    <div class="attractions-section">
       <h2>Attractions:</h2>
-      
-    </dl>
+      <dl class="attractions-list"></dl>
+  </div>
   </div>
 
   <form method="post" autocomplete="off">
@@ -49,6 +41,10 @@
 
     <input type="button" value="Submit!" id="submit-btn">
   </form>
+
+  <div class="footer">
+    <p>Footer</p>
+  </div>
 
   <template class="attraction-item-template">
     <div class="attractions-item">

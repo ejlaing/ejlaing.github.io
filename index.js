@@ -18,62 +18,68 @@ const db = getFirestore(firebaseApp);
 // Reference attractions collection
 const attractions = collection(db, "attractions");
 
-/* ---DISPLAY DATA ON WEBSITE--- */
-let numberoA = 0;
+/* ---DATA MANAGEMENT--- */
+class attraction {
+  constructor(name, typeOfAttraction, location, openTime, closeTime, rating) {
+    this.name = name;
+    this.typeOfAttraction = typeOfAttraction;
+    this.location = location;
+    this.openTime = openTime;
+    this.closeTime = closeTime;
+    this.rating = rating;
+  }
+  hours() {
+    return this.openTime + " - " + this.closeTime;
+  }
+}
 
-/* ---SEARCH FEATURES--- 
-const typesList = document.querySelector(".types-datalist");
-function myFunction(name) {
-  const newOption = document.createElement("option");
-  newOption.textContent = name;
-  typesList.append(newOption);
-}*/
-
-const typeList = document.querySelector(".type-list");
-const typeQuery = query(attractions, );
-const typesQuerySnapshot = await getDocs(typeQuery);
-let numberOfTypes = 0;
-typesQuerySnapshot.forEach((doc) => {
-  const type = doc.data().typeOfAttraction;
-  const id = "typeoA" + numberOfTypes;
-
-  const input = document.createElement("input");
-  input.setAttribute("type", "checkbox");
-  input.setAttribute("id", id);
-  const label = document.createElement("label");
-  label.setAttribute("for", id);
-  label.textContent = type;
-  const brk = document.createElement("br");
-
-  typeList.append(input);
-  typeList.append(label);
-  typeList.append(brk);
-
-  numberOfTypes++;
-});
-
-// Get data from firebase and display each using an HTML template
-const attractionItemTemplate = document.querySelector(".attraction-item-template");
-const attractionsList = document.querySelector(".attractions-list")
-const attractionQuery = query(attractions, orderBy("name"), limit(5));
+// Get data from Firebase, store it in attractionsArray
+const attractionsArray = [];
+const attractionQuery = query(attractions, orderBy("name"));
 const attractionsQuerySnapshot = await getDocs(attractionQuery);
 attractionsQuerySnapshot.forEach((doc) => {
-  const attraction = attractionItemTemplate.content.cloneNode(true).children[0];
-  const name = attraction.querySelector(".attraction-name")
-  const typeOfAttraction = attraction.querySelector(".attraction-type")
-  const location = attraction.querySelector(".attraction-loc")
-  const hours = attraction.querySelector(".attraction-hours")
-  const rating = attraction.querySelector(".attraction-rating")
+  const newAttraction = new attraction();
 
-  name.textContent = doc.data().name;
-  typeOfAttraction.textContent = doc.data().typeOfAttraction;
-  location.textContent = doc.data().location;
-  hours.textContent = doc.data().openTime + " - " + doc.data().closeTime;
-  rating.textContent = doc.data().rating + "/5.0";
+  newAttraction.name = doc.data().name;
+  newAttraction.typeOfAttraction = doc.data().typeOfAttraction;
+  newAttraction.location = doc.data().location;
+  newAttraction.openTime = doc.data().openTime;
+  newAttraction.closeTime = doc.data().closeTime;
+  newAttraction.rating = doc.data().rating;
 
-  attractionsList.append(attraction);
+  attractionsArray.push(newAttraction);
+});
+console.log(attractionsArray);
 
-  numberoA++; // Count up number of attractions
+// Display data on screen as cards
+const attractionItemTemplate = document.querySelector(".attraction-item-template");
+const attractionsList = document.querySelector(".attractions-list")
+attractionsArray.forEach((thisAttraction) => {
+  const attractionCard = attractionItemTemplate.content.cloneNode(true).children[0];
+  const name = attractionCard.querySelector(".attraction-name")
+  const typeOfAttraction = attractionCard.querySelector(".attraction-type")
+  const location = attractionCard.querySelector(".attraction-loc")
+  const hours = attractionCard.querySelector(".attraction-hours")
+  const rating = attractionCard.querySelector(".attraction-rating")
+
+  name.textContent = thisAttraction.name;
+  typeOfAttraction.textContent = thisAttraction.typeOfAttraction;
+  location.textContent = thisAttraction.location;
+  hours.textContent = thisAttraction.hours();
+  rating.textContent = thisAttraction.rating + "/5.0";
+
+  attractionsList.append(attractionCard);
+});
+
+// Search for data
+const searchInput = document.querySelector("#search");
+searchInput.addEventListener("input", (e) => {
+  const searchValue = e.target.value.toLowerCase();
+  console.log(searchValue);
+  attractionsList.childNodes.forEach((attractionCard) => {
+    const visible = attractionCard.textContent.toLowerCase().includes(searchValue);
+    attractionCard.classList.toggle("hide", !visible);
+  })
 });
 
 /* ---SUBMIT DATA TO DATABASE--- */
