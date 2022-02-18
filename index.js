@@ -71,29 +71,39 @@ attractionsArray.forEach((thisAttraction) => {
   attractionsList.append(attractionCard);
 });
 
-// Search for data
+// Search based on name
 const searchInput = document.querySelector("#search-spec");
 searchInput.addEventListener("input", (e) => {
   const searchValue = e.target.value.toLowerCase();
   attractionsList.childNodes.forEach((attractionCard) => {
-    const visible = attractionCard.textContent.toLowerCase().includes(searchValue);
+    const visible = attractionCard.querySelector(".attraction-name").textContent.toLowerCase().includes(searchValue);
     attractionCard.classList.toggle("hide", !visible);
   })
 });
 
+// Search based on location
 const locationInput = document.querySelector("#location-spec");
 locationInput.addEventListener("input", (e) => {
   const searchValue = e.target.value.toLowerCase();
   attractionsList.childNodes.forEach((attractionCard) => {
-    const visible = attractionCard.textContent.toLowerCase().includes(searchValue);
+    const visible = attractionCard.querySelector(".attraction-loc").textContent.toLowerCase().includes(searchValue);
     attractionCard.classList.toggle("hide", !visible);
   })
 });
 
+// Search based on type of attraction
+const typeInput = document.querySelector("#typeoA-spec");
+typeInput.addEventListener("input", (e) => {
+  const searchValue = e.target.value.toLowerCase();
+  attractionsList.childNodes.forEach((attractionCard) => {
+    const visible = attractionCard.querySelector(".attraction-type").textContent.toLowerCase().includes(searchValue);
+    attractionCard.classList.toggle("hide", !visible);
+  });
+});
+
 /* ---SUBMIT DATA TO DATABASE--- */
 // Get data from form
-document.getElementById("submit-btn").onclick = getFormData;
-
+document.querySelector("#submit-btn").addEventListener("click", getFormData);
 function getFormData() {
   const form = document.forms[0];
   const attraction = {

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="index.js" defer></script>
   <title>My Project</title>
@@ -16,17 +20,23 @@
       <h2>Aside</h2>
 
       <form class="aside-specs">
-        <label for="search-spec">Search Attractions:</label>
+        <label for="search-spec">Name:</label>
         <input type="search" id="search-spec">
-        <label for="location-spec">Search Attractions:</label>
+        <label for="location-spec">Location:</label>
         <input type="search" id="location-spec">
+        <label for="typeoA-spec">Type of Attraction:</label>
+        <input type="search" id="typeoA-spec">
       </form>
     </div>
  
     <div class="attractions-section">
       <h2>Attractions:</h2>
       <dl class="attractions-list"></dl>
+    </div>
   </div>
+
+  <div class="footer">
+    <p>Footer</p>
   </div>
 
   <form method="post" autocomplete="off">
@@ -36,6 +46,13 @@
     <input type="text" id="location" name="location"><br>
     <label for="typeoA">Type of Attraction:</label><br>
     <input type="text" id="typeoA" name="typeoA"><br>
+
+    <input type="text" id="openTime" name="openTime"><br>
+    <label for="openTime">Open Time:</label><br>
+    <input type="text" id="closeTime" name="closeTime"><br>
+    <label for="closeTime">Close Time:</label><br>
+
+
     <label for="rating">Rating:</label><br>
     <input type="text" id="rating" name="rating"><br>
     <label for="descr">Description:</label><br>
@@ -43,10 +60,6 @@
 
     <input type="button" value="Submit!" id="submit-btn">
   </form>
-
-  <div class="footer">
-    <p>Footer</p>
-  </div>
 
   <template class="attraction-item-template">
     <div class="attractions-item">
