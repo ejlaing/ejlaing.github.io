@@ -12,20 +12,32 @@
 
 <body>
   <div class="header">
-    <h1>My Project</h1>
+    <h1>Holler!</h1>
   </div>
 
   <div class="main-container">
     <div class="aside">
-      <h2>Aside</h2>
-
       <form class="aside-specs">
-        <label for="search-spec">Name:</label>
+        <label for="search-spec">Search:</label>
         <input type="search" id="search-spec">
+        
+        <br>
+
         <label for="location-spec">Location:</label>
-        <input type="search" id="location-spec">
-        <label for="typeoA-spec">Type of Attraction:</label>
-        <input type="search" id="typeoA-spec">
+        <select name="location-spec" id="location-spec">
+          <option value=""></option>
+        </select>
+
+        <br>
+
+        <label for="type-spec">Type:</label>
+        <select name="type-spec" id="type-spec">
+          <option value=""></option>
+        </select>
+
+        <br>
+
+        <button type="submit">Go!</button>
       </form>
     </div>
  
@@ -39,7 +51,7 @@
     <p>Footer</p>
   </div>
 
-  <form method="post" autocomplete="off">
+  <form method="post" autocomplete="off" class="submit-form">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name"><br>
     <label for="location">Location:</label><br>

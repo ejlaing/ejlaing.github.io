@@ -18,6 +18,10 @@ h2 {
   color: #BF360C;
 }
 
+option:invalid {
+  color: gray;
+}
+
 .header {
   background-color: #BF360C;
   margin: 0;
@@ -51,20 +55,20 @@ h2 {
 }
 
 .attractions-section h2 {
-  margin: 0.5em 0 0;
+  margin: 0;
   padding: 0.5em;
 }
 
 .attractions-list {
   margin: 0;
-  padding: 0.5em
+  padding: 0;
 }
 
 .attractions-item {
   background-color: #FF9E80;
   border-radius: 0.5em;
 
-  margin: 0.5em 0;
+  margin: 0 .5em .5em;
   padding: 0.5em;
 }
 

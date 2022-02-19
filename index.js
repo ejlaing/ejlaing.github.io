@@ -53,14 +53,14 @@ console.log(attractionsArray);
 
 // Display data on screen as cards
 const attractionItemTemplate = document.querySelector(".attraction-item-template");
-const attractionsList = document.querySelector(".attractions-list")
+const attractionsList = document.querySelector(".attractions-list");
 attractionsArray.forEach((thisAttraction) => {
   const attractionCard = attractionItemTemplate.content.cloneNode(true).children[0];
-  const name = attractionCard.querySelector(".attraction-name")
-  const typeOfAttraction = attractionCard.querySelector(".attraction-type")
-  const location = attractionCard.querySelector(".attraction-loc")
-  const hours = attractionCard.querySelector(".attraction-hours")
-  const rating = attractionCard.querySelector(".attraction-rating")
+  const name = attractionCard.querySelector(".attraction-name");
+  const typeOfAttraction = attractionCard.querySelector(".attraction-type");
+  const location = attractionCard.querySelector(".attraction-loc");
+  const hours = attractionCard.querySelector(".attraction-hours");
+  const rating = attractionCard.querySelector(".attraction-rating");
 
   name.textContent = thisAttraction.name;
   typeOfAttraction.textContent = thisAttraction.typeOfAttraction;
@@ -71,41 +71,74 @@ attractionsArray.forEach((thisAttraction) => {
   attractionsList.append(attractionCard);
 });
 
-// Search based on name
-const searchInput = document.querySelector("#search-spec");
-searchInput.addEventListener("input", (e) => {
-  const searchValue = e.target.value.toLowerCase();
-  attractionsList.childNodes.forEach((attractionCard) => {
-    const visible = attractionCard.querySelector(".attraction-name").textContent.toLowerCase().includes(searchValue);
-    attractionCard.classList.toggle("hide", !visible);
-  })
-});
+// Function for filling Select dropdowns
+function fillSelectElement(array, element) {
+  array.forEach((option) => {
+    const newOption = document.createElement("option");
+    newOption.setAttribute("value", option);
+    newOption.textContent = option;
 
-// Search based on location
-const locationInput = document.querySelector("#location-spec");
-locationInput.addEventListener("input", (e) => {
-  const searchValue = e.target.value.toLowerCase();
-  attractionsList.childNodes.forEach((attractionCard) => {
-    const visible = attractionCard.querySelector(".attraction-loc").textContent.toLowerCase().includes(searchValue);
-    attractionCard.classList.toggle("hide", !visible);
-  })
-});
-
-// Search based on type of attraction
-const typeInput = document.querySelector("#typeoA-spec");
-typeInput.addEventListener("input", (e) => {
-  const searchValue = e.target.value.toLowerCase();
-  attractionsList.childNodes.forEach((attractionCard) => {
-    const visible = attractionCard.querySelector(".attraction-type").textContent.toLowerCase().includes(searchValue);
-    attractionCard.classList.toggle("hide", !visible);
+    element.appendChild(newOption);
   });
+}
+
+// Make new array of unique locations
+let locationsArray = [];
+attractionsArray.forEach((attractions) => {
+  locationsArray.push(attractions.location);
 });
+const uniqLocations = [...new Set(locationsArray)];
+// Add unique locations to the location dropdown
+const locationInput = document.querySelector("#location-spec");
+fillSelectElement(uniqLocations, locationInput);
+
+// Make new array of unique types of attraction
+let typesArray = [];
+attractionsArray.forEach((attractions) => {
+  typesArray.push(attractions.typeOfAttraction);
+});
+const uniqTypes = [...new Set(typesArray)];
+// Add unique locations to the location dropdown
+const typesInput = document.querySelector("#type-spec");
+fillSelectElement(uniqTypes, typesInput);
+
+function manageAttracionsSearch(id, searchValue) {
+  attractionsList.childNodes.forEach((attractionCard) => {
+    const visible = attractionCard.querySelector(id).textContent.toLowerCase().includes(searchValue);
+    if (!visible) attractionCard.classList.add("hide");
+  })
+}
+
+// Get search input from aside form
+const asideForm = document.querySelector(".aside-specs");
+asideForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log("submitted");
+
+  const form = document.querySelector(".aside-specs");
+  const searchData = {
+    searchInputData:    form.querySelector("#search-spec").value.toLowerCase(),
+    locationInputData:  form.querySelector("#location-spec").value.toLowerCase(),
+    typeInputData:      form.querySelector("#type-spec").value.toLowerCase(),
+  }
+  console.log(searchData.locationInputData)
+
+  attractionsList.childNodes.forEach((attractionCard) => {
+    attractionCard.classList.remove("hide");
+  })
+
+  manageAttracionsSearch(".attraction-name", searchData.searchInputData);
+  manageAttracionsSearch(".attraction-loc", searchData.locationInputData);
+  manageAttracionsSearch(".attraction-type", searchData.typeInputData);
+});
+
+
 
 /* ---SUBMIT DATA TO DATABASE--- */
 // Get data from form
 document.querySelector("#submit-btn").addEventListener("click", getFormData);
 function getFormData() {
-  const form = document.forms[0];
+  const form = document.querySelector(".submit-form");
   const attraction = {
     name:             form["name"].value,
     location:         form["location"].value,
