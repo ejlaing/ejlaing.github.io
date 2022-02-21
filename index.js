@@ -3,7 +3,9 @@ import { getFirestore, collection, getDocs,
   query, addDoc, orderBy, limit
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
 
-/* ---PREPARING DATABASE--- */
+/* 
+---PREPARING DATABASE--- 
+*/
 // Initialize and configure Firebase
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyBlItp1Kq3TZp1aije7m9HxPzQG12zI7mU",
@@ -49,8 +51,12 @@ attractionsQuerySnapshot.forEach((doc) => {
 
   attractionsArray.push(newAttraction);
 });
-console.log(attractionsArray);
 
+document.getElementById("num-of-attractions").textContent = attractionsArray.length;
+
+/*
+---DISPLAYING DATA---
+*/
 // Display data on screen as cards
 const attractionItemTemplate = document.querySelector(".attraction-item-template");
 const attractionsList = document.querySelector(".attractions-list");
@@ -102,39 +108,86 @@ const uniqTypes = [...new Set(typesArray)];
 const typesInput = document.querySelector("#type-spec");
 fillSelectElement(uniqTypes, typesInput);
 
-function manageAttracionsSearch(id, searchValue) {
+// Manage Search bar based on attraction name
+function manageAttractionsSearch(id, searchValue) {
   attractionsList.childNodes.forEach((attractionCard) => {
     const visible = attractionCard.querySelector(id).textContent.toLowerCase().includes(searchValue);
     if (!visible) attractionCard.classList.add("hide");
   })
 }
 
+// Check which attractions are open based on current time
+function checkOpenAttractions() {
+  const currentTime = new Date();
+  const currentMinutes = currentTime.getHours()*60 + currentTime.getMinutes();
+
+  attractionsList.childNodes.forEach((attractionCard) => {
+    // Turn Hours String ("10:00am - 2:00pm") into minutes (600, 840)
+    const hoursString = attractionCard.querySelector(".attraction-hours").textContent;
+    const openTimeString = hoursString.substr(0, 5).split(":");
+    const closeTimeString = hoursString.substr(10, 5).split(":");;
+    let openTimeMin = parseInt(openTimeString[0], 10)*60 + parseInt(openTimeString[1], 10);
+    let closeTimeMin = parseInt(closeTimeString[0], 10)*60 + parseInt(closeTimeString[1], 10);
+    // If the time had a "pm", add 12 hours to it (720 mins)
+    const openInPM = (hoursString.substr(5, 2) === "pm" && openTimeString[0] != 12);
+    const closeInPM = (hoursString.substr(15, 2) === "pm" && closeTimeString[0] != 12);
+    if (openInPM) openTimeMin += 720;
+    if (closeInPM) closeTimeMin += 720;
+
+    const visible = (currentMinutes >= openTimeMin && currentMinutes <= closeTimeMin);
+
+    if (!visible) attractionCard.classList.add("hide");
+  })
+}
+
+// Only show attractions whose ratings have been selected
+function manageRatings(ratingsChecked) {
+  attractionsList.childNodes.forEach((attractionCard) => {
+    const attractionRating = Math.floor(attractionCard.querySelector(".attraction-rating").textContent.substr(0, 3));
+    let visible = (ratingsChecked[attractionRating - 1]);
+
+    const someChecked = ratingsChecked.some((rating) => {return rating});
+    if (!someChecked) visible = true;
+
+    if (!visible) attractionCard.classList.add("hide");
+  });
+}
+
 // Get search input from aside form
 const asideForm = document.querySelector(".aside-specs");
 asideForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  console.log("submitted");
 
   const form = document.querySelector(".aside-specs");
   const searchData = {
-    searchInputData:    form.querySelector("#search-spec").value.toLowerCase(),
-    locationInputData:  form.querySelector("#location-spec").value.toLowerCase(),
-    typeInputData:      form.querySelector("#type-spec").value.toLowerCase(),
+    searchInputData:      form.querySelector("#search-spec").value.toLowerCase(),
+    locationInputData:    form.querySelector("#location-spec").value.toLowerCase(),
+    typeInputData:        form.querySelector("#type-spec").value.toLowerCase(),
+    openInputDataChecked: form.querySelector("#is-open").checked,
+    ratingsChecked: [
+      form.querySelector("#rating-1").checked,
+      form.querySelector("#rating-2").checked,
+      form.querySelector("#rating-3").checked,
+      form.querySelector("#rating-4").checked,
+      form.querySelector("#rating-5").checked]
   }
-  console.log(searchData.locationInputData)
 
   attractionsList.childNodes.forEach((attractionCard) => {
     attractionCard.classList.remove("hide");
   })
 
-  manageAttracionsSearch(".attraction-name", searchData.searchInputData);
-  manageAttracionsSearch(".attraction-loc", searchData.locationInputData);
-  manageAttracionsSearch(".attraction-type", searchData.typeInputData);
+  manageAttractionsSearch(".attraction-name", searchData.searchInputData);
+  manageAttractionsSearch(".attraction-loc", searchData.locationInputData);
+  manageAttractionsSearch(".attraction-type", searchData.typeInputData);
+  manageRatings(searchData.ratingsChecked);
+  if (searchData.openInputDataChecked) checkOpenAttractions();
 });
 
 
 
-/* ---SUBMIT DATA TO DATABASE--- */
+/* 
+---SUBMIT DATA TO DATABASE---
+*/
 // Get data from form
 document.querySelector("#submit-btn").addEventListener("click", getFormData);
 function getFormData() {
