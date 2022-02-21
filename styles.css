@@ -18,8 +18,53 @@ h2 {
   color: #BF360C;
 }
 
-option:invalid {
-  color: gray;
+h3 {
+  margin: 1em 0 0.3em;
+  padding: 0;
+
+  color: #BF360C;
+}
+
+form {
+  font-size: 100%;
+}
+
+input[type=search], select {
+  width: 100%;
+
+  padding: 0.2em;
+  margin-bottom: 0.5em;
+  margin-top: 0.25em;
+
+  border-color: transparent;
+  border-radius: 0.5em;
+  background-color: #FF9E80;
+}
+
+input[type=search]:focus, select:focus {
+  background-color: white;
+}
+
+.checkbox-label {
+  display: block;
+  width: 40%;
+  margin: 0.2em 0.5em 0.5em 0;
+  padding: 0.1em;
+  background-color: #FF9E80;
+  border-radius: 0.5em;
+}
+
+.is-open-label {
+  display: block;
+  width: 55%;
+  margin: 1em 0.5em 0.5em 0;
+  padding: 0.1em;
+  background-color: #FF9E80;
+  border-radius: 0.5em;
+}
+
+input[type=checkbox] {
+  margin: 0 0.5em;
 }
 
 .header {
@@ -83,9 +128,9 @@ form {
   font-size: 1em;
 }
 
-.footer {
+footer {
   width: 100%;
-  height: 2em;
+  height: 1em;
   padding: 0.25em 0 1em;
   background-color: #BF360C;
   text-align: center;

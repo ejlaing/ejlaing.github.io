@@ -18,42 +18,43 @@
   <div class="main-container">
     <div class="aside">
       <form class="aside-specs">
+        <h2>Filters:</h2>
         <label for="search-spec">Search:</label>
         <input type="search" id="search-spec" autocomplete="off">
-        
         <br>
-
         <label for="location-spec">Location:</label>
         <select name="location-spec" id="location-spec">
           <option value=""></option>
         </select>
-
         <br>
-
         <label for="type-spec">Type:</label>
         <select name="type-spec" id="type-spec">
           <option value=""></option>
         </select>
-
         <br>
+        <label for="is-open" class="is-open-label">
+          <input type="checkbox" id="is-open" name="is-open" value="open">
+          Open now
+        </label>
 
-        <label for="isOpen">Open now:</label>
-        <input type="checkbox" id="is-open" name="is-open" value="Open">
-
-        <br>
-
-        <h3>Rating:</h3>
-        <label for="rating-5">5:</label>
-        <input type="checkbox" id="rating-5" name="rating-5" value="5"><br>
-        <label for="rating-4">4:</label>
-        <input type="checkbox" id="rating-4" name="rating-4" value="4"><br>
-        <label for="rating-3">3:</label>
-        <input type="checkbox" id="rating-3" name="rating-3" value="3"><br>
-        <label for="rating-2">2:</label>
-        <input type="checkbox" id="rating-2" name="rating-2" value="2"><br>
-        <label for="rating-1">1:</label>
-        <input type="checkbox" id="rating-1" name="rating-1" value="1"><br>
-
+        <div class="rating-form">
+          <h3>Rating:</h3>
+          <label for="rating-5" class="checkbox-label">
+            <input type="checkbox" id="rating-5" name="rating-5" value="5"> 
+            Five</label>
+          <label for="rating-4" class="checkbox-label">
+            <input type="checkbox" id="rating-4" name="rating-4" value="4"> 
+            Four</label>
+          <label for="rating-3" class="checkbox-label">
+            <input type="checkbox" id="rating-3" name="rating-3" value="3"> 
+            Three</label>
+          <label for="rating-2" class="checkbox-label">
+            <input type="checkbox" id="rating-2" name="rating-2" value="2"> 
+            Two</label>
+          <label for="rating-1" class="checkbox-label">
+            <input type="checkbox" id="rating-1" name="rating-1" value="1"> 
+            One</label>
+        </div>
         <br>
 
         <button type="submit">Go!</button>
@@ -61,36 +62,12 @@
     </div>
  
     <div class="attractions-section">
-      <h2>Attractions (<span id="num-of-attractions"></span>):</h2>
+      <h2>Attractions: </h2>
       <dl class="attractions-list"></dl>
     </div>
   </div>
 
-  <div class="footer">
-    <p>Footer</p>
-  </div>
-
-  <form method="post" autocomplete="off" class="submit-form">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="location">Location:</label><br>
-    <input type="text" id="location" name="location"><br>
-    <label for="typeoA">Type of Attraction:</label><br>
-    <input type="text" id="typeoA" name="typeoA"><br>
-    
-    <label for="openTime">Open Time:</label><br>
-    <input type="text" id="openTime" name="openTime"><br>
-    <label for="closeTime">Close Time:</label><br>
-    <input type="text" id="closeTime" name="closeTime"><br>
-
-
-    <label for="rating">Rating:</label><br>
-    <input type="text" id="rating" name="rating"><br>
-    <label for="descr">Description:</label><br>
-    <textarea id="descr" name="descr"></textarea><br>
-
-    <input type="button" value="Submit!" id="submit-btn">
-  </form>
+  <footer></footer>
 
   <template class="attraction-item-template">
     <div class="attractions-item">

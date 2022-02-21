@@ -1,9 +1,9 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
 import { getFirestore, collection, getDocs, 
-  query, addDoc, orderBy, limit
+  query, addDoc, orderBy
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
 
-/* 
+/*
 ---PREPARING DATABASE--- 
 */
 // Initialize and configure Firebase
@@ -51,8 +51,6 @@ attractionsQuerySnapshot.forEach((doc) => {
 
   attractionsArray.push(newAttraction);
 });
-
-document.getElementById("num-of-attractions").textContent = attractionsArray.length;
 
 /*
 ---DISPLAYING DATA---
@@ -182,30 +180,3 @@ asideForm.addEventListener("submit", (event) => {
   manageRatings(searchData.ratingsChecked);
   if (searchData.openInputDataChecked) checkOpenAttractions();
 });
-
-
-
-/* 
----SUBMIT DATA TO DATABASE---
-*/
-// Get data from form
-document.querySelector("#submit-btn").addEventListener("click", getFormData);
-function getFormData() {
-  const form = document.querySelector(".submit-form");
-  const attraction = {
-    name:             form["name"].value,
-    location:         form["location"].value,
-    openTime:         form["openTime"].value,
-    closeTime:        form["closeTime"].value,
-    typeOfAttraction: form["typeoA"].value,
-    rating:           form["rating"].value,
-    description:      form["descr"].value,
-  }
-  setData(attraction);
-  console.log(attraction)
-}
-
-// Add a new document in collection "attractions", with data
-async function setData(newAttraction) {
-  const docRef = await addDoc(collection(db, "attractions"), newAttraction);
-}
