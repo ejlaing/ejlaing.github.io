@@ -22,13 +22,14 @@ const attractions = collection(db, "attractions");
 
 /* ---DATA MANAGEMENT--- */
 class attraction {
-  constructor(name, typeOfAttraction, location, openTime, closeTime, rating) {
+  constructor(name, typeOfAttraction, location, openTime, closeTime, rating, descr) {
     this.name = name;
     this.typeOfAttraction = typeOfAttraction;
     this.location = location;
     this.openTime = openTime;
     this.closeTime = closeTime;
     this.rating = rating;
+    this.descr = descr;
   }
   hours() {
     return this.openTime + " - " + this.closeTime;
@@ -48,6 +49,7 @@ attractionsQuerySnapshot.forEach((doc) => {
   newAttraction.openTime = doc.data().openTime;
   newAttraction.closeTime = doc.data().closeTime;
   newAttraction.rating = doc.data().rating;
+  newAttraction.descr = doc.data().description;
 
   attractionsArray.push(newAttraction);
 });
@@ -65,12 +67,14 @@ attractionsArray.forEach((thisAttraction) => {
   const location = attractionCard.querySelector(".attraction-loc");
   const hours = attractionCard.querySelector(".attraction-hours");
   const rating = attractionCard.querySelector(".attraction-rating");
+  const descr = attractionCard.querySelector(".attraction-descr");
 
   name.textContent = thisAttraction.name;
   typeOfAttraction.textContent = thisAttraction.typeOfAttraction;
   location.textContent = thisAttraction.location;
   hours.textContent = thisAttraction.hours();
   rating.textContent = thisAttraction.rating + "/5.0";
+  descr.textContent = thisAttraction.descr;
 
   attractionsList.append(attractionCard);
 });
