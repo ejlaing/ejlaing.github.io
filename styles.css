@@ -128,7 +128,8 @@ input[type=checkbox] {
   display: block;
   color: #BF360C;
   background-color: #FBE9E7;
-  border: 1px solid black;
+  border: 1px none black;
+  border-radius: 0.25em;
   padding: 0.5em;
 }
 

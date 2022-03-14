@@ -1,0 +1,15 @@
+Presentation:
+1. Explain planning process
+2. Explains UI options and why you picked what
+    - Biggest challenge was deciding which factors to sort by
+3. Explain program flow?
+    - Explain how the search works
+4. Questions?
+
+Project:
+1. Good identifiers
+2. Comments
+3. Documentation
+4. At least one if-then statement
+5. Data storage - Google Firebase is backed up
+6. Logical programming, if-then statements

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="index.js" defer></script>
+  <title>Holler!</title>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Holler!</h1>
+  </div>
+
+  <div class="main-container">
+    <div class="aside">
+      <form class="aside-specs">
+        <h2>Filters:</h2>
+        <label for="search-spec">Search:</label>
+        <input type="search" id="search-spec" autocomplete="off">
+        <br>
+        <label for="location-spec">Location:</label>
+        <select name="location-spec" id="location-spec">
+          <option value=""></option>
+        </select>
+        <br>
+        <label for="type-spec">Type:</label>
+        <select name="type-spec" id="type-spec">
+          <option value=""></option>
+        </select>
+        <br>
+        <label for="is-open" class="is-open-label">
+          <input type="checkbox" id="is-open" name="is-open" value="open">
+          Open now
+        </label>
+
+        <div class="rating-form">
+          <h3>Rating:</h3>
+          <label for="rating-5" class="checkbox-label">
+            <input type="checkbox" id="rating-5" name="rating-5" value="5"> 
+            Five</label>
+          <label for="rating-4" class="checkbox-label">
+            <input type="checkbox" id="rating-4" name="rating-4" value="4"> 
+            Four</label>
+          <label for="rating-3" class="checkbox-label">
+            <input type="checkbox" id="rating-3" name="rating-3" value="3"> 
+            Three</label>
+          <label for="rating-2" class="checkbox-label">
+            <input type="checkbox" id="rating-2" name="rating-2" value="2"> 
+            Two</label>
+          <label for="rating-1" class="checkbox-label">
+            <input type="checkbox" id="rating-1" name="rating-1" value="1"> 
+            One</label>
+        </div>
+        <br>
+
+        <button type="submit">Go!</button>
+      </form>
+    </div>
+ 
+    <div class="attractions-section">
+      <h2>Attractions: </h2>
+      <dl class="attractions-list"></dl>
+    </div>
+  </div>
+
+  <footer></footer>
+
+  <template class="attraction-item-template">
+    <div class="attractions-item">
+      <div class="attractions-details">
+        <dt class="attraction-name"></dt>
+        <dd class="attraction-type"></dd>
+        <dd class="attraction-loc"></dd> 
+        <dd class="attraction-hours"></dd>
+        <dd class="attraction-rating"></dd>
+      </div>
+      <p class="attraction-descr"></p>
+    </div>
+  </template>
+</body>
+</html>
