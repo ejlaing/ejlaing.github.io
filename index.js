@@ -171,7 +171,8 @@ asideForm.addEventListener("submit", (event) => {
       form.querySelector("#rating-2").checked,
       form.querySelector("#rating-3").checked,
       form.querySelector("#rating-4").checked,
-      form.querySelector("#rating-5").checked]
+      form.querySelector("#rating-5").checked
+    ]
   }
 
   attractionsList.childNodes.forEach((attractionCard) => {
@@ -183,4 +184,10 @@ asideForm.addEventListener("submit", (event) => {
   manageAttractionsSearch(".attraction-type", searchData.typeInputData);
   manageRatings(searchData.ratingsChecked);
   if (searchData.openInputDataChecked) checkOpenAttractions();
+});
+
+asideForm.addEventListener("reset", (event) => {
+  attractionsList.childNodes.forEach((attractionCard) => {
+    attractionCard.classList.remove("hide");
+  })
 });
