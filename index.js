@@ -1,7 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
-import { getFirestore, collection, getDocs, 
-  query, addDoc, orderBy
-} from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
+import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-lite.js';
 
 /*
 ---PREPARING DATABASE--- 
@@ -110,14 +108,6 @@ const uniqTypes = [...new Set(typesArray)];
 const typesInput = document.querySelector("#type-spec");
 fillSelectElement(uniqTypes, typesInput);
 
-// Manage Search bar based on attraction name
-function manageAttractionsSearch(id, searchValue) {
-  attractionsList.childNodes.forEach((attractionCard) => {
-    const visible = attractionCard.querySelector(id).textContent.toLowerCase().includes(searchValue);
-    if (!visible) attractionCard.classList.add("hide");
-  })
-}
-
 // Check which attractions are open based on current time
 function checkOpenAttractions() {
   const currentTime = new Date();
@@ -153,6 +143,14 @@ function manageRatings(ratingsChecked) {
 
     if (!visible) attractionCard.classList.add("hide");
   });
+}
+
+// Manage Search bar based on attraction name
+function manageAttractionsSearch(id, searchValue) {
+  attractionsList.childNodes.forEach((attractionCard) => {
+    const visible = attractionCard.querySelector(id).textContent.toLowerCase().includes(searchValue);
+    if (!visible) attractionCard.classList.add("hide");
+  })
 }
 
 // Get search input from aside form
