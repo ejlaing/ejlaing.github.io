@@ -39,6 +39,7 @@ const attractionsArray = [];
 const attractionQuery = query(attractions, orderBy("name"));
 const attractionsQuerySnapshot = await getDocs(attractionQuery);
 attractionsQuerySnapshot.forEach((doc) => {
+  // Make new attraction, fill it with data
   const newAttraction = new attraction();
 
   newAttraction.name = doc.data().name;
@@ -49,6 +50,7 @@ attractionsQuerySnapshot.forEach((doc) => {
   newAttraction.rating = doc.data().rating;
   newAttraction.descr = doc.data().description;
 
+  // Add the new attraction to the array
   attractionsArray.push(newAttraction);
 });
 
@@ -59,6 +61,7 @@ attractionsQuerySnapshot.forEach((doc) => {
 const attractionItemTemplate = document.querySelector(".attraction-item-template");
 const attractionsList = document.querySelector(".attractions-list");
 attractionsArray.forEach((thisAttraction) => {
+  // Reference the template elements
   const attractionCard = attractionItemTemplate.content.cloneNode(true).children[0];
   const name = attractionCard.querySelector(".attraction-name");
   const typeOfAttraction = attractionCard.querySelector(".attraction-type");
@@ -67,6 +70,7 @@ attractionsArray.forEach((thisAttraction) => {
   const rating = attractionCard.querySelector(".attraction-rating");
   const descr = attractionCard.querySelector(".attraction-descr");
 
+  // Fill the elements with data from attractionsArray
   name.textContent = thisAttraction.name;
   typeOfAttraction.textContent = thisAttraction.typeOfAttraction;
   location.textContent = thisAttraction.location;
