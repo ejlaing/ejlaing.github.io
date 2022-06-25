@@ -13,7 +13,7 @@ const firebaseApp = initializeApp({
     messagingSenderId: "1051181314735",
     appId: "1:1051181314735:web:2726c20e1841bb19a41a5a"
 });
-// Initialize database
+// Get initialized database
 const db = getFirestore(firebaseApp);
 // Reference attractions collection
 const attractions = collection(db, "attractions");
@@ -130,6 +130,7 @@ function checkOpenAttractions() {
     if (openInPM) openTimeMin += 720;
     if (closeInPM) closeTimeMin += 720;
 
+    // Compare current time to open and closing time, then hide if it's currently closed
     const visible = (currentMinutes >= openTimeMin && currentMinutes <= closeTimeMin);
 
     if (!visible) attractionCard.classList.add("hide");
